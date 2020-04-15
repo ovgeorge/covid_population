@@ -18,9 +18,12 @@ df['GE'].update( df['GE'].apply(todate) )
 
 import matplotlib.pyplot as plt
 
+index = df['NOME_PROVINCIA'] == 'Bergamo'
+df = df[index]
 index = df['GE'] < 88
 df88 = df[index].sort_values(by=['GE'])
 df88 = df88.groupby('GE').sum()
+#df.loc[df['column_name'] == some_value]
 plt.plot(list(df88['TOTALE_15'].cumsum()), label = "2015")
 plt.plot(list(df88['TOTALE_16'].cumsum()), label = "2016")
 plt.plot(list(df88['TOTALE_17'].cumsum()), label = "2017")
